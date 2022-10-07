@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import { getPokemons } from './Api';
 import './App.css';
 import Navbar from './componets/Navbar';
 import Pokedex from './componets/Pokedex';
@@ -10,7 +11,14 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
 
   const fetchPokemons = async () => {
-    setLoading(true);
+    try {
+      setLoading(true);
+      const result = await getPokemons();
+      setPokemons(result)
+      setLoading(false)
+    } catch (error) {
+      console.log("fetchPokemos error ", error);
+    }  
   }
 
   useEffect ( () => {

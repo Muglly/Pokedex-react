@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import { getPokemons } from './Api';
+import { useEffect, useState } from 'react';
+import { getPokemonData, getPokemons } from './Api';
 import './App.css';
 import Navbar from './componets/Navbar';
 import Pokedex from './componets/Pokedex';
@@ -13,24 +13,29 @@ function App() {
   const fetchPokemons = async () => {
     try {
       setLoading(true);
-      const result = await getPokemons();
-      setPokemons(result)
-      setLoading(false)
+      const data = await getPokemons();
+      const promises = data.results.map(async (pokemon) => {
+        return await getPokemonData(pokemon.url);
+      });
+
+      const result = await Promise.all(promises);
+      setPokemons(result);
+      setLoading(false);
     } catch (error) {
       console.log("fetchPokemos error ", error);
-    }  
+    }
   }
 
-  useEffect ( () => {
+  useEffect(() => {
     console.log("Carregou")
     fetchPokemons();
-  },[])
+  }, [])
 
   return (
     <div className="App">
-      <Navbar/>
-      <Searchbar/>
-      <Pokedex/>
+      <Navbar />
+      <Searchbar />
+      <Pokedex pokemons={pokemons} loading={loading} />
     </div>
   );
 }

@@ -63,13 +63,14 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  margin: 0 2%;
 }
 
 .pokedex-grid {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(3, 1fr);
-  margin: 0 2%;
+  margin: 2%;
 }
 
 /* ********** */
@@ -113,7 +114,7 @@ nav {
   display: flex;
 }
 
-.pokemon-type-text{
+.pokemon-type-text {
   margin-right: 10px;
   text-transform: capitalize;
 }
@@ -124,6 +125,16 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
+
+/* *********** */
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ************ */
 
 @media screen and (max-width:740px) {
   .pokedex-grid {

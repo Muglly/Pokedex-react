@@ -9,7 +9,7 @@ function Navbar () {
             <div>
                 <img className="nav-img" alt="pokeapi-logo" src={logoImg}/>
             </div>
-            <div>❤️ Favoritos: {favoritePokemons.length}</div>
+            <div> {favoritePokemons.length}:❤️Favoritos</div>
         </nav>
     )
 }

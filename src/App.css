@@ -79,7 +79,15 @@ nav {
 .pokemon-card {
   display: flex;
   box-shadow: 4px 4px 4px (0, 0, 0, 0.25);
-  background-color: green;
+  background-color: #3d8d7a;
+  border-radius: 10px;
+  color: white;
+  transition: 0.5s;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.1);
+  border: 5px solid rgb(230,230,230);
 }
 
 .pokemon-image-container {
@@ -133,6 +141,10 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.quantidade{
+  margin: 0 10px;
 }
 
 /* ************ */

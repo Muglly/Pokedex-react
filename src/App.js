@@ -6,8 +6,8 @@ import Pokedex from './componets/Pokedex';
 import Searchbar from './componets/Searchbar';
 import { FavoriteProvider } from './contexts/favoritesContext';
 
+const favoritesKey = "f";
 function App() {
-
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -32,8 +32,16 @@ function App() {
     }
   };
 
+  const loadFavoritePokemons = () => {
+    const pokemons = JSON.parse(window.localStorage.getItem(favoritesKey)) || [];
+    setFavorites(pokemons)
+  }
+
   useEffect(() => {
-    console.log("Carregou")
+    loadFavoritePokemons();
+  }, []);
+
+  useEffect(() => {
     fetchPokemons();
   }, [page]);
 
@@ -41,10 +49,11 @@ function App() {
     const updateFavorites = [...favorites]
     const favoriteIndex = favorites.indexOf(name)
     if(favoriteIndex >= 0) {
-      updateFavorites.slice(favoriteIndex, 1);
+      updateFavorites.splice(favoriteIndex, 1);
     }else {
       updateFavorites.push(name);
     }
+    window.localStorage.setItem(favoritesKey, JSON.stringify(updateFavorites))
     setFavorites(updateFavorites);
   }
 

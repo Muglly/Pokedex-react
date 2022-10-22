@@ -179,3 +179,9 @@ button.pokemon-heart-btn {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 460px) {
+  .pokemon-card {
+    margin-bottom: 10px;
+  }
+}
